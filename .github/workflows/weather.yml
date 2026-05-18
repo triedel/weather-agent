@@ -1,0 +1,10 @@
+</> YAML
+- name: Save report
+  run: |
+    python austin_weather_agent.py > report.txt
+
+- name: Upload artifact
+  uses: actions/upload-artifact@v4
+  with:
+    name: weather-report
+    path: report.txt
