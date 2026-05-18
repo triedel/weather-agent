@@ -1,10 +1,29 @@
-</> YAML
-- name: Save report
-  run: |
-    python austin_weather_agent.py > report.txt
+name: Austin Weather Agent
 
-- name: Upload artifact
-  uses: actions/upload-artifact@v4
-  with:
-    name: weather-report
-    path: report.txt
+on:
+  schedule:
+    - cron: "0 12 * * *"  # 7am Austin = 12 UTC
+  workflow_dispatch:      # allows manual run button
+
+jobs:
+  run-weather:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run weather agent
+        env:
+          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+        run: python austin_weather_agent.py
