@@ -82,18 +82,14 @@ def analyze(data):
 
 def analyze_air_quality(aq_data):
     aqi = aq_data["list"][0]["main"]["aqi"]
+    co = aq_data["list"][0]["components"]["co"]
+    pm25 = aq_data["list"][0]["components"]["pm2_5"]
 
-    labels = {
-        1: "Good",
-        2: "Fair",
-        3: "Moderate",
-        4: "Poor",
-        5: "Very Poor"
-    }
 
     return {
-        "aqi": aqi,
-        "label": labels.get(aqi, "Unknown")
+        "aqi": aqi, 
+        "co": co, 
+        "pm25": pm25        
     }
 
 
@@ -112,8 +108,12 @@ def generate_report(weather_analysis, air_analysis):
 
     Rain expected: {"Yes" if weather_analysis["rain"] else "No"}
 
-    Air Quality: {air_analysis['label']}
+    Air Quality: {air_analysis['aqi']}
+    1: "Good", 2: "Fair", 3: "Moderate", 4: "Poor", 5: "Very Poor"
 
+    Carbon Monoxide (µg/m³): {air_analysis['co']}
+    PM2.5 (µg/m³): {air_analysis['pm2_5']}
+                              
     Generated:
     {datetime.datetime.now()}
     """
