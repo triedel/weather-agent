@@ -107,10 +107,10 @@ def generate_report(weather_analysis, air_analysis):
     report = f"""
     Austin Weather Brief
 
-    High: {analysis['max_temp']:.0f}°F
-    Low: {analysis['min_temp']:.0f}°F
+    High: {weather_analysis['max_temp']:.0f}°F
+    Low: {weather_analysis['min_temp']:.0f}°F
 
-    Rain expected: {"Yes" if analysis["rain"] else "No"}
+    Rain expected: {"Yes" if weather_analysis["rain"] else "No"}
 
     Generated:
     {datetime.datetime.now()}
