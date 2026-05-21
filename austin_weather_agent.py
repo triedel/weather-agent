@@ -6,6 +6,9 @@ from email.mime.text import MIMEText
 
 print("SCRIPT STARTED")
 
+LAT = 30.202866
+LON = -97.853076
+
 # ======================
 # CONFIG FROM GITHUB SECRETS
 # ======================
@@ -37,6 +40,22 @@ def get_forecast():
 
     return data["list"][:8]
 
+def get_air_quality():
+    print("Fetching air quality...")
+
+    url = (
+        f"https://api.openweathermap.org/data/2.5/air_pollution"
+        f"?lat={LAT}&lon={LON}&appid={API_KEY}"
+    )
+
+    response = requests.get(url)
+
+    print("Air API status:", response.status_code)
+
+    data = response.json()
+
+    return data
+
 # ======================
 # ANALYZE WEATHER
 # ======================
@@ -58,6 +77,27 @@ def analyze(data):
     }
 
 # ======================
+# ANALYZE AIR QUALITY
+# ======================
+
+def analyze_air_quality(aq_data):
+    aqi = aq_data["list"][0]["main"]["aqi"]
+
+    labels = {
+        1: "Good",
+        2: "Fair",
+        3: "Moderate",
+        4: "Poor",
+        5: "Very Poor"
+    }
+
+    return {
+        "aqi": aqi,
+        "label": labels.get(aqi, "Unknown")
+    }
+
+
+# ======================
 # GENERATE REPORT
 # ======================
 
@@ -75,7 +115,7 @@ Rain expected: {"Yes" if analysis["rain"] else "No"}
 Generated:
 {datetime.datetime.now()}
 """
-
+lines.append(f"Air Quality: {air_analysis['label']}")
     return report
 
 # ======================
@@ -109,9 +149,13 @@ def main():
 
     data = get_forecast()
 
-    analysis = analyze(data)
+    weather_analysis = analyze(data)
 
-    report = generate_report(analysis)
+    aq_data = get_air_quality()
+
+    air_analysis = analyze_air_quality(aq_data)
+
+    report = generate_report(weather_analysis, air_analysis)
 
     print(report)
 
