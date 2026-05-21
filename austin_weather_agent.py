@@ -101,7 +101,7 @@ def analyze_air_quality(aq_data):
 # GENERATE REPORT
 # ======================
 
-def generate_report(analysis):
+def generate_report(weather_analysis, air_analysis):
     print("Generating report...")
 
     report = f"""
