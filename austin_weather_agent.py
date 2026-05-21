@@ -83,7 +83,7 @@ def analyze(data):
 def analyze_air_quality(aq_data):
     aqi = aq_data["list"][0]["main"]["aqi"]
     co = aq_data["list"][0]["components"]["co"]
-    pm25 = aq_data["list"][0]["components"]["pm2_5"]
+    pm25 = aq_data["list"][0]["components"]["pm25"]
 
 
     return {
