@@ -105,17 +105,17 @@ def generate_report(analysis):
     print("Generating report...")
 
     report = f"""
-Austin Weather Brief
+    Austin Weather Brief
 
-High: {analysis['max_temp']:.0f}°F
-Low: {analysis['min_temp']:.0f}°F
+    High: {analysis['max_temp']:.0f}°F
+    Low: {analysis['min_temp']:.0f}°F
 
-Rain expected: {"Yes" if analysis["rain"] else "No"}
+    Rain expected: {"Yes" if analysis["rain"] else "No"}
 
-Generated:
-{datetime.datetime.now()}
-"""
-lines.append(f"Air Quality: {air_analysis['label']}")
+    Generated:
+    {datetime.datetime.now()}
+    """
+    lines.append(f"Air Quality: {air_analysis['label']}")
     return report
 
 # ======================
