@@ -83,7 +83,7 @@ def analyze(data):
 def analyze_air_quality(aq_data):
     aqi = aq_data["list"][0]["main"]["aqi"]
     co = aq_data["list"][0]["components"]["co"]
-    pm25 = aq_data["list"][0]["components"]["pm25"]
+    pm25 = aq_data["list"][0]["components"]["pm2_5"]
 
 
     return {
@@ -112,7 +112,7 @@ def generate_report(weather_analysis, air_analysis):
     1: "Good", 2: "Fair", 3: "Moderate", 4: "Poor", 5: "Very Poor"
 
     Carbon Monoxide (µg/m³): {air_analysis['co']}
-    PM2.5 (µg/m³): {air_analysis['pm2_5']}
+    PM2.5 (µg/m³): {air_analysis['pm25']}
                               
     Generated:
     {datetime.datetime.now()}
