@@ -2,7 +2,7 @@ name: Austin Weather Agent
 
 on:
   schedule:
-    - cron: "0 12 * * *"  # 7am Austin = 12 UTC
+    - cron: "0 11 * * *"  # 6am Austin = 11 UTC
   workflow_dispatch:      # allows manual run button
 
 jobs:
