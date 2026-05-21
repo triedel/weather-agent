@@ -112,10 +112,12 @@ def generate_report(weather_analysis, air_analysis):
 
     Rain expected: {"Yes" if weather_analysis["rain"] else "No"}
 
+    Air Quality: {air_analysis['label']}
+
     Generated:
     {datetime.datetime.now()}
     """
-    lines.append(f"Air Quality: {air_analysis['label']}")
+    
     return report
 
 # ======================
