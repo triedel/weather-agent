@@ -103,16 +103,22 @@ def generate_report(weather_analysis, air_analysis):
     report = f"""
     Austin Weather Brief
 
-    High: {weather_analysis['max_temp']:.0f}°F
-    Low: {weather_analysis['min_temp']:.0f}°F
+    High: 
+    {weather_analysis['max_temp']:.0f}°F
+    Low: 
+    {weather_analysis['min_temp']:.0f}°F
 
-    Rain expected: {"Yes" if weather_analysis["rain"] else "No"}
+    Rain expected: 
+    {"Yes" if weather_analysis["rain"] else "No"}
 
-    Air Quality: {air_analysis['aqi']}
-    1: "Good", 2: "Fair", 3: "Moderate", 4: "Poor", 5: "Very Poor"
-
-    Carbon Monoxide (µg/m³): {air_analysis['co']}
-    PM2.5 (µg/m³): {air_analysis['pm25']}
+    Air Quality:  1: "Good", 2: "Fair", 3: "Moderate", 4: "Poor", 5: "Very Poor"
+    {air_analysis['aqi']}
+   
+    Carbon Monoxide (µg/m³): 
+    {air_analysis['co']}
+    
+    PM2.5 (µg/m³): 
+    {air_analysis['pm25']}
                               
     Generated:
     {datetime.datetime.now()}
