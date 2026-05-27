@@ -111,7 +111,7 @@ def generate_report(weather_analysis, air_analysis):
     Rain expected: 
     {"Yes" if weather_analysis["rain"] else "No"}
 
-    Air Quality: """" 1: "Good", 2: "Fair", 3: "Moderate", 4: "Poor", 5: "Very Poor" """"
+    Air Quality:  1: "Good", 2: "Fair", 3: "Moderate", 4: "Poor", 5: "Very Poor" 
     {air_analysis['aqi']}
    
     Carbon Monoxide (µg/m³): 
