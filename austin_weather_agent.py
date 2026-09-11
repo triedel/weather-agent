@@ -109,7 +109,9 @@ def generate_report(weather_analysis, air_analysis):
     {weather_analysis['min_temp']:.0f}°F
 
     Rain expected: 
-    {"Yes" if weather_analysis["rain"] else "No"}
+     for d in data:
+        lines.append(f"{d['dt_txt']}: {d['main']['temp']:.0f}°F, "
+                 f"{d['pop'] * 100:.0f}% rain")
 
     Air Quality:  1: "Good", 2: "Fair", 3: "Moderate", 4: "Poor", 5: "Very Poor" 
     {air_analysis['aqi']}
