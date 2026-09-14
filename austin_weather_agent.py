@@ -100,7 +100,13 @@ def analyze_air_quality(aq_data):
 def generate_report(weather_analysis, air_analysis):
     print("Generating report...")
 
+    forecast = ""
+
+    for d in data:
+        forecast += f"{d['dt_txt']}: {d['main']['temp']:.0f}°F, {d['pop'] * 100:.0f}% rain\n"
+    
     report = f"""
+    
     Austin Weather Brief
 
     High: 
@@ -165,7 +171,7 @@ def main():
 
     air_analysis = analyze_air_quality(aq_data)
 
-    report = generate_report(weather_analysis, air_analysis)
+    report = generate_report(weather_analysis, air_analysis, data)
 
     print(report)
 
